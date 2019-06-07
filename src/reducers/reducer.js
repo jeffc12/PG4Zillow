@@ -6,7 +6,7 @@ export const initialState = {
 };
 
 const photosClip = (data, position) => {
-  return [data.slice()[position]]
+  return data.slice()
 };
 
 const Reducer = (state = initialState, action) => {
@@ -15,13 +15,8 @@ const Reducer = (state = initialState, action) => {
   case Photos:
     return {
       ...state,
-      gallery: photosClip(payload, move)
-    };
-  case Next:
-    return {
-      ...state,
-      tiles: photosClip(payload, move)
-  };    
+      gallery: photosClip(payload)
+    };  
   default:
     return state;
   }

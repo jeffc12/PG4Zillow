@@ -8,18 +8,7 @@ export const fetchData = () => {
     const data = await dataService();
     return dispatch({
       type: Photos,
-      payload: data,
-      move : 0
+      payload: data
     });
   };
-};
-
-export const nextPhoto = (move) => (dispatch, getState) => {
-  const state = getState();
-  const { gallery } = state.Reducer;
-  return dispatch({
-    type: Next,
-    payload: gallery,
-    move : move
-  });
 };

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './frame.scss'
 
 
 const Frame = ({ photo }) => (
-  <div>frame</div>
+  <div className="container">
+  <img src={photo.url} className="img-fluid"/>
+    {/* <div className="bottom-left">{photo.url}</div> */}
+  ></div>
 );
 
 Frame.propTypes = {
