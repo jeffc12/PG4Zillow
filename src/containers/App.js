@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchData } from '../actions/index';
-import './style.scss';
-import Frame from "../components/frame";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-var Carousel = require('react-responsive-carousel').Carousel;
+import './app.scss';
+import Frame from '../components/frame';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import {Carousel} from 'react-responsive-carousel';
 
 class App extends Component {
   static propTypes = {
@@ -33,21 +32,20 @@ class App extends Component {
           loaded: true,
           display: data.payload.map(photo => photo)
         })
-      })
-
+      });
   }
 
   render() {
     return (
       <div>
         <div className='container-fluid'>
-          <div className="card card-inverse text-center" >
+          <div className='card card-inverse text-center' >
             <Carousel
               showThumbs={false}
               infiniteLoop={true}
               showIndicators={false}
               emulateTouch={true}>
-              {this.state.loaded ? this.state.display.map((photo, index) => {
+              {this.state.loaded && this.state.display.length > 1 ? this.state.display.map((photo, index) => {
                 return <div><Frame photo={photo} key={index} /></div>
               }) : ''}
             </Carousel>

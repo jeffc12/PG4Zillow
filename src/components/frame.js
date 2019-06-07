@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './frame.scss'
 
-
 const Frame = ({ photo }) => (
   <div className="card-img-top">
     <img src={photo.url} className="img-fluid" />

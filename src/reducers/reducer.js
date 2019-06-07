@@ -1,4 +1,4 @@
-import { Photos, Next } from '../actions/';
+import { Photos } from '../actions/';
 import { combineReducers } from 'redux';
 
 export const initialState = {
@@ -6,7 +6,7 @@ export const initialState = {
 };
 
 const photosClip = (data, position) => {
-  return data.slice()
+  return data.slice();
 };
 
 const Reducer = (state = initialState, action) => {
