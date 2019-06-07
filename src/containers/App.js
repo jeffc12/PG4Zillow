@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchData, Photos} from '../actions/index';
+import { fetchData } from '../actions/index';
 import './style.scss';
-import Tile from "../components/tile";
+import Frame from "../components/frame";
 
 class App extends Component {
   static propTypes = {
@@ -15,7 +15,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false
+      loaded: false,
+      displayed: null
     };
   }
 
@@ -24,13 +25,16 @@ class App extends Component {
     dispatch(fetchData());
   }
   render() {
-    const { gallery } = this.props;
-    // console.log(gallery)
     return (
       <div>
         <h1>PhotoGallery 4 Zillow</h1>
-
-        <Tile />
+        <div className='container-fuild'>
+          <div className='card-deck'>
+            {this.props.gallery.map((photo, index) => {
+              return <Frame photo={photo} key={index} />;
+            })}
+          </div>  
+        </div>
       </div>
     )
   }
