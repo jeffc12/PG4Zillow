@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { fetchData } from '../actions/index';
 import './style.scss';
 import Frame from "../components/frame";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+var Carousel = require('react-responsive-carousel').Carousel;
 
 class App extends Component {
   static propTypes = {
@@ -21,65 +23,37 @@ class App extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props;
     const self = this;
+    
     dispatch(fetchData())
       .then((data) => {
-        self.setState({ display: [data.payload[0]] })
-      });
-  }
+        self.setState({
+          loaded: true,
+          display: data.payload.map(photo => photo)
+        })
+      })
 
-  next(move, prevState) {
-    const { gallery } = this.props;
-    const self = this;
-    const current = self.state.position;
-    if (move > 0) {
-      if (prevState === gallery.length - 1) {
-        this.setState({ position: 0 })
-      } else {
-        this.setState({ position: prevState + 1 })
-      }
-    }
-    else if (move < 0) {
-      if (prevState === 0) {
-        this.setState({ position: gallery.length - 1 })
-      } else {
-        this.setState({ position: prevState - 1 })
-      }
-    }
-
-    this.setState({ display: [gallery[current]] })
   }
 
   render() {
-    const { gallery } = this.props;
     return (
-
       <div>
-        <button
-          className={'btn btn-primary'}
-          onClick={() => this.next(-1, this.state.position)}
-        >
-          {'<'}
-        </button>
-        <button
-          className={'btn btn-primary'}
-          onClick={() => this.next(1, this.state.position)}
-        >
-          {'>'}
-        </button>
         <div className='container-fluid'>
-
           <div className="card card-inverse text-center" >
-            {this.state.display.map((photo, index) => {
-              return <Frame photo={photo} key={index} />;
-            })}
+            <Carousel
+              showThumbs={false}
+              infiniteLoop={true}
+              showIndicators={false}
+              emulateTouch={true}>
+              {this.state.loaded ? this.state.display.map((photo, index) => {
+                return <div><Frame photo={photo} key={index} /></div>
+              }) : ''}
+            </Carousel>
           </div>
         </div>
-        <div className={'labelNumber'}>{this.state.position + 1} / {gallery.length}</div>
       </div>
-
     )
   }
 }
