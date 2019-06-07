@@ -26,7 +26,7 @@ class App extends Component {
     const self = this;
     dispatch(fetchData())
       .then((data) => {
-        self.setState({display : [data.payload[0]]})
+        self.setState({ display: [data.payload[0]] })
       });
   }
 
@@ -36,26 +36,27 @@ class App extends Component {
     const current = self.state.position;
     if (move > 0) {
       if (prevState === gallery.length - 1) {
-        this.setState({position: 0})
+        this.setState({ position: 0 })
       } else {
-        this.setState({position: prevState + 1})
-      }      
+        this.setState({ position: prevState + 1 })
+      }
     }
     else if (move < 0) {
       if (prevState === 0) {
-        this.setState({position: gallery.length - 1})
+        this.setState({ position: gallery.length - 1 })
       } else {
-        this.setState({position: prevState - 1})
-      }    
+        this.setState({ position: prevState - 1 })
+      }
     }
 
-   this.setState({display : [gallery[current]]})
+    this.setState({ display: [gallery[current]] })
   }
 
   render() {
+    const { gallery } = this.props;
     return (
+
       <div>
-        <h1>PhotoGallery 4 Zillow</h1>
         <button
           className={'btn btn-primary'}
           onClick={() => this.next(-1, this.state.position)}
@@ -68,15 +69,17 @@ class App extends Component {
         >
           {'>'}
         </button>
-          
         <div className='container-fluid'>
-          <div className='card-deck'>
+
+          <div className="card card-inverse text-center" >
             {this.state.display.map((photo, index) => {
               return <Frame photo={photo} key={index} />;
             })}
           </div>
         </div>
+        <div className={'labelNumber'}>{this.state.position + 1} / {gallery.length}</div>
       </div>
+
     )
   }
 }

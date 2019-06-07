@@ -1,11 +1,19 @@
-.container {
-  position: relative;
-  text-align: center;
+.card-caption {
+  font-size: 12px;
   color: white;
+  position: absolute;
+  bottom: 0;
+}
+.card-title {
+  font-size: 8px;
+  color: white;
+  position: absolute;
+  bottom: 1;
+}
+.img-fluid {
+  max-height: 500px;
 }
 
-.bottom-left {
-  position: absolute;
-  bottom: -5px;
-  left: 16px;
+.card {
+  background-color: rgba(000, 0, 0, 0.25)
 }
