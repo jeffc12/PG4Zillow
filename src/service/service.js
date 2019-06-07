@@ -1,4 +1,4 @@
-import patterns from './patterns.js';
+import patterns from './photoAPIData.js';
 
 const patternsAPI = Promise.resolve(patterns);
 
@@ -10,7 +10,7 @@ const mockDataService = () => {
       data[0].forEach((key, i) => {
         storageArray.push({
           id : i,
-          discription : key.description,
+          discription : key.description || 'No caption for this photo',
           url : key.urls.regular,
           user : key.user.name
         })
