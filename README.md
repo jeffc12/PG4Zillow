@@ -3,7 +3,7 @@ This application is a photo gallery that was built with React/Redux. The example
 
 Each photo is displayed in a 'sliding' format which allows users to swipe or click to view each of the photos.
 
-The example also includes bootstrap 4.x and demonstrates the usage bootstrap cards/containers for dynamic resizing.
+The example also includes bootstrap 4.x and demonstrates the usage of bootstrap cards/containers for dynamic resizing.
 
 ## How to Run
 Once in the directory: 
